@@ -1,0 +1,19 @@
+{
+  "name": "movie-book-companion",
+  "version": "1.0.0",
+  "description": "A web app that connects books and movies",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pug": "^3.0.2",
+    "axios": "^1.6.0",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+} 

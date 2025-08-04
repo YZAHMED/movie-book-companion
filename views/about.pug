@@ -1,0 +1,47 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title About - Movie & Book Companion
+    link(rel="stylesheet", href="/style.css")
+  body
+    .container
+      header
+        a.back-link(href="/") ← Back to Search
+        
+      main
+        .about-content
+          h1 About Movie & Book Companion
+          
+          .about-section
+            h2 What is this app?
+            p Movie & Book Companion is a web application that helps you discover connections between movies and books. Whether you've watched a great movie and want to find the book it's based on, or you've read an amazing book and want to see if there's a movie adaptation, this app has you covered.
+          
+          .about-section
+            h2 Features
+            ul.features-list
+              li Search for movies using the OMDB API
+              li Search for books using the Google Books API
+              li View detailed information about movies and books
+              li Discover related content across different media types
+              li Clean, modern interface for easy navigation
+          
+          .about-section
+            h2 APIs Used
+            ul.api-list
+              li 
+                strong OMDB API: 
+                | For movie information and search
+              li 
+                strong Google Books API: 
+                | For book information and search
+          
+          .about-section
+            h2 How to Use
+            ol.usage-list
+              li Enter a search term in the search box
+              li Choose whether to search for movies, books, or both
+              li Browse through the search results
+              li Click on any item to view detailed information
+              li Explore related content suggestions 

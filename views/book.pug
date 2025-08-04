@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{book.volumeInfo.title} - Movie & Book Companion
+    link(rel="stylesheet", href="/style.css")
+  body
+    .container
+      header
+        a.back-link(href="/") ← Back to Search
+        
+      main
+        .book-detail
+          .book-header
+            if book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail
+              img.book-cover-large(src=book.volumeInfo.imageLinks.thumbnail, alt=book.volumeInfo.title)
+            else
+              .no-cover-large No Cover Available
+            
+            .book-info
+              h1= book.volumeInfo.title
+              if book.volumeInfo.authors
+                p.author= book.volumeInfo.authors.join(', ')
+              if book.volumeInfo.publishedDate
+                p.published= book.volumeInfo.publishedDate
+              if book.volumeInfo.publisher
+                p.publisher= book.volumeInfo.publisher
+              if book.volumeInfo.pageCount
+                p.pages= book.volumeInfo.pageCount + ' pages'
+              if book.volumeInfo.averageRating
+                p.rating ⭐ #{book.volumeInfo.averageRating}/5
+              if book.volumeInfo.description
+                p.description= book.volumeInfo.description
+        
+        if relatedMovies && relatedMovies.length > 0
+          .related-section
+            h2 Related Movies
+            .movies-grid
+              each movie in relatedMovies
+                .movie-card
+                  if movie.Poster && movie.Poster !== 'N/A'
+                    img.movie-poster-small(src=movie.Poster, alt=movie.Title)
+                  else
+                    .no-poster-small No Image
+                  .movie-info
+                    h3= movie.Title
+                    if movie.Year
+                      p.year= movie.Year
+                    if movie.Type
+                      p.type= movie.Type
+                    a.detail-link(href=`/movie/${movie.imdbID}`) View Movie Details
+        else
+          .no-related
+            p No related movies found for this book. 

@@ -1,0 +1,60 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Search Results - Movie & Book Companion
+    link(rel="stylesheet", href="/style.css")
+  body
+    .container
+      header
+        h1 Search Results
+        a.back-link(href="/") ← Back to Search
+        
+      main
+        if error
+          .error-message
+            p= error
+        
+        if query
+          .search-info
+            h2 Results for "#{query}"
+            if type === 'movie'
+              p Searching for movies...
+            else if type === 'book'
+              p Searching for books...
+            else
+              p Searching for both movies and books...
+        
+        if results && results.length > 0
+          .results-grid
+            each item in results
+              if type === 'movie' || (type === 'both' && item.imdbID)
+                .result-card.movie-card
+                  if item.Poster && item.Poster !== 'N/A'
+                    img.poster(src=item.Poster, alt=item.Title)
+                  else
+                    .no-poster No Image
+                  .card-content
+                    h3= item.Title
+                    p.year= item.Year
+                    p.type= item.Type
+                    a.detail-link(href=`/movie/${item.imdbID}`) View Details
+              
+              else if type === 'book' || (type === 'both' && item.id)
+                .result-card.book-card
+                  if item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail
+                    img.cover(src=item.volumeInfo.imageLinks.thumbnail, alt=item.volumeInfo.title)
+                  else
+                    .no-cover No Cover
+                  .card-content
+                    h3= item.volumeInfo.title
+                    if item.volumeInfo.authors
+                      p.author= item.volumeInfo.authors.join(', ')
+                    if item.volumeInfo.publishedDate
+                      p.year= item.volumeInfo.publishedDate.substring(0, 4)
+                    a.detail-link(href=`/book/${item.id}`) View Details
+        else
+          .no-results
+            p No results found for "#{query}"
+            a.search-again(href="/") Try a different search 

@@ -1,0 +1,51 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Movie & Book Companion
+    link(rel="stylesheet", href="/style.css")
+  body
+    .container
+      header
+        h1 Movie & Book Companion
+        p Discover connections between your favorite movies and books
+        
+      main
+        .search-section
+          form.search-form(action="/search", method="GET")
+            .search-input-group
+              input#searchInput(
+                type="text", 
+                name="q", 
+                placeholder="Search for movies or books...",
+                required
+              )
+              button.search-btn(type="submit") Search
+            
+            .search-options
+              label.radio-option
+                input(type="radio", name="type", value="movie", checked)
+                span Movie
+              label.radio-option
+                input(type="radio", name="type", value="book")
+                span Book
+              label.radio-option
+                input(type="radio", name="type", value="both")
+                span Both
+        
+        .features
+          .feature-card
+            h3 🎬 Movie Search
+            p Find movies and discover related books
+          .feature-card
+            h3 📚 Book Search
+            p Find books and discover related movies
+          .feature-card
+            h3 🔗 Cross-Reference
+            p See connections between different media types
+      
+      footer
+        p
+          a(href="/about") About
+          |  | Movie & Book Companion App
